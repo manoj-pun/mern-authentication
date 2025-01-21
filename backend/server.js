@@ -4,9 +4,9 @@ import "dotenv/config";
 import cookieParser from "cookie-parser";
 import connectDb from "./config/mongodb.js";
 
+connectDb();
 const app = express();
 const PORT = process.env.PORT || 4000;
-connectDb();
 
 app.use(express.json());
 app.use(cookieParser());
