@@ -98,7 +98,7 @@ export const sendVerifyOtp = async(req,res) => {
         const {userId} = req.body;
 
         const user = await userModel.findById(userId);
-        console.log(user);
+        // console.log(user);
 
         if(user.isAccountVerified){
             return res.json({success:false,message:"Account already verified"});
@@ -124,6 +124,7 @@ export const sendVerifyOtp = async(req,res) => {
     }
 }
 
+//verify the email using otp
 export const verifyEmail= async(req,res) => {
     const {userId,otp} = req.body;
     
@@ -154,5 +155,14 @@ export const verifyEmail= async(req,res) => {
         return res.json({success:true,message:"Email verified successully"});
     } catch (error) {
         return res.json({success:false,message:error.message});
+    }
+}
+
+//check if the user is authenticated
+export const isAuthenticated = async(req,res) => {
+    try {
+        return res.json({success:true})
+    } catch (error) {
+        res.json({success:false,message:error.message})
     }
 }
