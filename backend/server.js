@@ -10,9 +10,12 @@ connectDb();
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+const allowedOrigins = ["http://localhost:5173"]
+//also if you want to use the backend server on another server then you can add like const allowedOrigins = ["http://localhost:5173",http://localhost:6000,http://localhost:3000]
+
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({origin:allowedOrigins, credentials:true}));
 
 //API endpoints
 app.get("/",(req,res) => {
